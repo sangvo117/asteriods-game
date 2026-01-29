@@ -1,7 +1,7 @@
 import pygame
 import sys
 from player import Player
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT, PLAYER_SHOOT_COOLDOWN_SECONDS
 from logger import log_state, log_event
 from asteroidfield import AsteroidField
 from asteroid import Asteroid
@@ -37,6 +37,7 @@ def main():
                 return
         screen.fill("black")
         updatable.update(dt)
+        player.shoot_timer -= dt
 
         for obj in asteroids:
             if obj.collides_with(player):
